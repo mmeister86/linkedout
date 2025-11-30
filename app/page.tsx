@@ -1,103 +1,231 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
+
+import { useState } from 'react';
+import { useCompletion } from '@ai-sdk/react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Loader2 } from 'lucide-react';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [topic, setTopic] = useState('');
+  const [language, setLanguage] = useState<'english' | 'german'>('english');
+  const [error, setError] = useState<string | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const {
+    completion,
+    isLoading: isGenerating,
+    error: completionError,
+    handleSubmit,
+    setCompletion,
+  } = useCompletion({
+    api: '/api/generate',
+    onError: (error: Error) => {
+      setError(error.message || 'An error occurred while generating the post.');
+    },
+    onFinish: (prompt, result) => {
+      setError(null);
+    },
+  });
+
+  const handleGenerate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!topic.trim()) return;
+
+    // Clear previous results and errors
+    setCompletion('');
+    setError(null);
+
+    // Convert language to match API expectations
+    const apiLanguage = language === 'english' ? 'en' : 'de';
+
+    // Directly call the API with our custom implementation
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topic, language: apiLanguage }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate post');
+      }
+
+      // Get the response as a stream and handle it
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      const decoder = new TextDecoder();
+      let result = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        result += chunk;
+        setCompletion(result);
+      }
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'An error occurred while generating the post.');
+    }
+  };
+
+  const handleCopyToClipboard = async () => {
+    if (!completion) return;
+
+    try {
+      await navigator.clipboard.writeText(completion);
+      setCopySuccess(true);
+      // Reset the success state after 2 seconds
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      setError('Failed to copy to clipboard. Please try again.');
+      // Clear error after 3 seconds
+      setTimeout(() => setError(null), 3000);
+    }
+  };
+
+  const handleDownloadMarkdown = () => {
+    if (!completion) return;
+
+    try {
+      // Create a timestamp for the filename
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      const filename = `linkedout-post-${timestamp}.md`;
+
+      // Create a markdown file with the generated post
+      const element = document.createElement('a');
+      const file = new Blob([completion], { type: 'text/markdown' });
+      element.href = URL.createObjectURL(file);
+      element.download = filename;
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+
+      // Clean up the object URL to avoid memory leaks
+      URL.revokeObjectURL(element.href);
+    } catch (err) {
+      console.error('Failed to download file: ', err);
+      setError('Failed to download file. Please try again.');
+      // Clear error after 3 seconds
+      setTimeout(() => setError(null), 3000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-2xl space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight">LinkedOut</h1>
+          <p className="text-muted-foreground">
+            Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we&apos;ll create a cringe-worthy post for you.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Input Form */}
+        <form onSubmit={handleGenerate} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="topic" className="text-sm font-medium">
+              Topic or Event
+            </label>
+            <Textarea
+              id="topic"
+              placeholder="Describe your topic or event (e.g., 'I just got a new job as a software engineer')"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              className="min-h-24"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Language</label>
+            <div className="flex gap-4">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  value="english"
+                  checked={language === 'english'}
+                  onChange={() => setLanguage('english')}
+                  className="text-primary"
+                />
+                <span>English</span>
+              </label>
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  value="german"
+                  checked={language === 'german'}
+                  onChange={() => setLanguage('german')}
+                  className="text-primary"
+                />
+                <span>German</span>
+              </label>
+            </div>
+          </div>
+
+          <Button
+            type="submit"
+            disabled={!topic.trim() || isGenerating}
+            className="w-full"
+          >
+            {isGenerating ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              'Generate LinkedIn Post'
+            )}
+          </Button>
+        </form>
+
+        {/* Error Display */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-3">
+            {error}
+          </div>
+        )}
+
+        {/* Generated Post */}
+        {completion && (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Generated Post</label>
+              <div className="border rounded-md p-4 bg-card min-h-32 whitespace-pre-wrap">
+                {completion}
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                onClick={handleCopyToClipboard}
+                disabled={!completion}
+                className="flex-1"
+              >
+                {copySuccess ? 'Copied!' : 'Copy to Clipboard'}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleDownloadMarkdown}
+                disabled={!completion}
+                className="flex-1"
+              >
+                Download as Markdown
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
