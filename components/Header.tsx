@@ -3,8 +3,11 @@
 import { Search, Bell, MessageSquare, Home, Users, Briefcase, ChevronDown, User, Moon, Sun, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
+  const t = useTranslations('header');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -15,14 +18,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-13">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-primary text-2xl font-bold">LinkedOut</h1>
+            <h1 className="text-primary text-2xl font-bold">{t('logo')}</h1>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setShowMobileMenu(!showMobileMenu)}
             className="lg:hidden p-2 rounded-full hover:bg-secondary transition-colors"
-            aria-label="Toggle mobile menu"
+            aria-label={t('aria.toggleMobileMenu')}
           >
             {showMobileMenu ? (
               <X className="h-6 w-6" />
@@ -37,7 +40,7 @@ export default function Header() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <input
                 type="text"
-                placeholder="Search for opportunities"
+                placeholder={t('search.placeholder')}
                 className="linkedin-input w-full pl-10 pr-4 py-2 text-sm"
               />
             </div>
@@ -47,23 +50,23 @@ export default function Header() {
           <nav className="hidden lg:flex items-center space-x-6">
             <div className="flex flex-col items-center cursor-pointer group">
               <Home className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">Home</span>
+              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">{t('nav.home')}</span>
             </div>
             <div className="flex flex-col items-center cursor-pointer group">
               <Users className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">Network</span>
+              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">{t('nav.network')}</span>
             </div>
             <div className="flex flex-col items-center cursor-pointer group">
               <Briefcase className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">Jobs</span>
+              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">{t('nav.jobs')}</span>
             </div>
             <div className="flex flex-col items-center cursor-pointer group">
               <MessageSquare className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">Messaging</span>
+              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">{t('nav.messaging')}</span>
             </div>
             <div className="flex flex-col items-center cursor-pointer group relative">
               <Bell className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">Notifications</span>
+              <span className="text-xs mt-1 text-muted-foreground group-hover:text-primary transition-colors">{t('nav.notifications')}</span>
               <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
             </div>
           </nav>
@@ -74,23 +77,23 @@ export default function Header() {
               <nav className="flex flex-col p-4 space-y-4">
                 <div className="flex items-center space-x-3 cursor-pointer">
                   <Home className="h-6 w-6 text-muted-foreground" />
-                  <span className="text-sm">Home</span>
+                  <span className="text-sm">{t('nav.home')}</span>
                 </div>
                 <div className="flex items-center space-x-3 cursor-pointer">
                   <Users className="h-6 w-6 text-muted-foreground" />
-                  <span className="text-sm">Network</span>
+                  <span className="text-sm">{t('nav.network')}</span>
                 </div>
                 <div className="flex items-center space-x-3 cursor-pointer">
                   <Briefcase className="h-6 w-6 text-muted-foreground" />
-                  <span className="text-sm">Jobs</span>
+                  <span className="text-sm">{t('nav.jobs')}</span>
                 </div>
                 <div className="flex items-center space-x-3 cursor-pointer">
                   <MessageSquare className="h-6 w-6 text-muted-foreground" />
-                  <span className="text-sm">Messaging</span>
+                  <span className="text-sm">{t('nav.messaging')}</span>
                 </div>
                 <div className="flex items-center space-x-3 cursor-pointer relative">
                   <Bell className="h-6 w-6 text-muted-foreground" />
-                  <span className="text-sm">Notifications</span>
+                  <span className="text-sm">{t('nav.notifications')}</span>
                   <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
                 </div>
               </nav>
@@ -112,22 +115,22 @@ export default function Header() {
             {showUserMenu && (
               <div className="absolute right-0 mt-2 w-64 bg-card rounded-lg shadow-lg border border-border py-2 z-50">
                 <div className="px-4 py-3 border-b border-border">
-                  <p className="font-semibold">Professional User</p>
-                  <p className="text-sm text-muted-foreground">Thought Leader at Synergy Corp</p>
+                  <p className="font-semibold">{t('userMenu.userName')}</p>
+                  <p className="text-sm text-muted-foreground">{t('userMenu.userTitle')}</p>
                 </div>
                 <div className="py-1">
                   <a href="#" className="block px-4 py-2 text-sm hover:bg-secondary transition-colors">
-                    View Profile
+                    {t('userMenu.viewProfile')}
                   </a>
                   <a href="#" className="block px-4 py-2 text-sm hover:bg-secondary transition-colors">
-                    Settings
+                    {t('userMenu.settings')}
                   </a>
                   <a href="#" className="block px-4 py-2 text-sm hover:bg-secondary transition-colors">
-                    Help Center
+                    {t('userMenu.helpCenter')}
                   </a>
                   <div className="border-t border-border mt-1 pt-1">
                     <a href="#" className="block px-4 py-2 text-sm hover:bg-secondary transition-colors">
-                      Sign Out
+                      {t('userMenu.signOut')}
                     </a>
                   </div>
                 </div>
@@ -135,11 +138,14 @@ export default function Header() {
             )}
           </div>
 
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="ml-4 p-2 rounded-full hover:bg-secondary transition-colors"
-            aria-label="Toggle theme"
+            aria-label={t('aria.toggleTheme')}
           >
             {theme === "dark" ? (
               <Sun className="h-5 w-5" />
@@ -154,7 +160,7 @@ export default function Header() {
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              Premium
+              {t('premium')}
             </span>
           </div>
         </div>

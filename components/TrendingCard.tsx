@@ -1,37 +1,40 @@
 "use client";
 
 import { TrendingUp, Briefcase, Users, Hash, Calendar, Plus, MoreHorizontal } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function TrendingCard() {
+  const t = useTranslations('trending');
+
   const trendingTopics = [
     {
-      category: "Technology",
-      title: "AI Revolution in Workplace",
-      posts: "2,847 posts",
+      category: t('topics.technology'),
+      title: t('topics.aiRevolution'),
+      posts: `2,847 ${t('posts')}`,
       change: "+15%"
     },
     {
-      category: "Leadership",
-      title: "Synergy Management",
-      posts: "1,923 posts",
+      category: t('topics.leadership'),
+      title: t('topics.synergyManagement'),
+      posts: `1,923 ${t('posts')}`,
       change: "+8%"
     },
     {
-      category: "Productivity",
-      title: "Hustle Culture 2.0",
-      posts: "1,456 posts",
+      category: t('topics.productivity'),
+      title: t('topics.hustleCulture'),
+      posts: `1,456 ${t('posts')}`,
       change: "+22%"
     },
     {
-      category: "Innovation",
-      title: "Blockchain Everything",
-      posts: "987 posts",
+      category: t('topics.innovation'),
+      title: t('topics.blockchainEverything'),
+      posts: `987 ${t('posts')}`,
       change: "+5%"
     },
     {
-      category: "Career",
-      title: "Quiet Quitting Solutions",
-      posts: "756 posts",
+      category: t('topics.career'),
+      title: t('topics.quietQuitting'),
+      posts: `756 ${t('posts')}`,
       change: "+18%"
     }
   ];
@@ -60,15 +63,15 @@ export default function TrendingCard() {
   const todayAtWork = [
     {
       icon: <Calendar className="h-4 w-4" />,
-      text: "You have 3 meetings today"
+      text: t('work.meetings', { count: 3 })
     },
     {
       icon: <Users className="h-4 w-4" />,
-      text: "5 people viewed your profile"
+      text: t('work.profileViews', { count: 5 })
     },
     {
       icon: <Briefcase className="h-4 w-4" />,
-      text: "2 new job opportunities"
+      text: t('work.jobOpportunities', { count: 2 })
     }
   ];
 
@@ -79,7 +82,7 @@ export default function TrendingCard() {
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-lg flex items-center">
             <TrendingUp className="h-5 w-5 mr-2" />
-            Trending Now
+            {t('title')}
           </h3>
           <button className="text-muted-foreground hover:bg-secondary rounded-full p-1">
             <MoreHorizontal className="h-4 w-4" />
@@ -92,8 +95,8 @@ export default function TrendingCard() {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-1 mb-1">
-                    <span className="badge-trending text-xs">TRENDING</span>
-                    {index === 0 && <span className="badge-premium text-xs">HOT</span>}
+                    <span className="badge-trending text-xs">{t('trending')}</span>
+                    {index === 0 && <span className="badge-premium text-xs">{t('hot')}</span>}
                   </div>
                   <p className="font-medium text-sm">{topic.title}</p>
                   <div className="flex items-center gap-2 mt-1">
@@ -113,8 +116,8 @@ export default function TrendingCard() {
       {/* Who to Follow */}
       <div className="linkedin-card">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-semibold text-lg">People You May Know</h3>
-          <button className="text-primary text-sm hover:underline">See all</button>
+          <h3 className="font-semibold text-lg">{t('connections.title')}</h3>
+          <button className="text-primary text-sm hover:underline">{t('connections.seeAll')}</button>
         </div>
 
         <div className="space-y-3">
@@ -127,11 +130,11 @@ export default function TrendingCard() {
                 <div>
                   <p className="font-medium text-sm">{person.name}</p>
                   <p className="text-xs text-muted-foreground">{person.title}</p>
-                  <p className="text-xs text-muted-foreground">{person.mutualConnections} mutual connections</p>
+                  <p className="text-xs text-muted-foreground">{person.mutualConnections} {t('connections.mutualConnections')}</p>
                 </div>
               </div>
               <button className="btn-linkedin-primary text-xs py-1 px-3">
-                Connect
+                {t('connections.connect')}
               </button>
             </div>
           ))}
@@ -143,9 +146,9 @@ export default function TrendingCard() {
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-lg flex items-center">
             <Briefcase className="h-5 w-5 mr-2" />
-            Today at Work
+            {t('work.title')}
           </h3>
-          <button className="text-primary text-sm hover:underline">View all</button>
+          <button className="text-primary text-sm hover:underline">{t('work.viewAll')}</button>
         </div>
 
         <div className="space-y-3">
@@ -165,15 +168,15 @@ export default function TrendingCard() {
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-lg flex items-center">
             <TrendingUp className="h-5 w-5 mr-2" />
-            Your Professional Impact
+            {t('impact.title')}
           </h3>
         </div>
 
         <div className="space-y-3">
           <div>
             <div className="flex justify-between text-sm mb-1">
-              <span>Profile Strength</span>
-              <span className="font-semibold">All-Star</span>
+              <span>{t('impact.profileStrength')}</span>
+              <span className="font-semibold">{t('impact.allStar')}</span>
             </div>
             <div className="w-full bg-secondary rounded-full h-2">
               <div className="bg-success-green h-2 rounded-full" style={{ width: "95%" }}></div>
@@ -182,7 +185,7 @@ export default function TrendingCard() {
 
           <div>
             <div className="flex justify-between text-sm mb-1">
-              <span>Network Growth</span>
+              <span>{t('impact.networkGrowth')}</span>
               <span className="font-semibold">+23%</span>
             </div>
             <div className="w-full bg-secondary rounded-full h-2">
@@ -192,8 +195,8 @@ export default function TrendingCard() {
 
           <div>
             <div className="flex justify-between text-sm mb-1">
-              <span>Engagement Rate</span>
-              <span className="font-semibold">Exceptional</span>
+              <span>{t('impact.engagementRate')}</span>
+              <span className="font-semibold">{t('impact.exceptional')}</span>
             </div>
             <div className="w-full bg-secondary rounded-full h-2">
               <div className="bg-accent-gold h-2 rounded-full" style={{ width: "89%" }}></div>
@@ -203,10 +206,10 @@ export default function TrendingCard() {
 
         <div className="mt-4 p-3 bg-linear-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
           <p className="text-xs text-muted-foreground mb-2">
-            {"You're in the top 1% of professionals this week! Your content is generating 3x more engagement than average."}
+            {t('impact.topPercent')}
           </p>
           <button className="btn-linkedin-premium w-full text-xs py-2">
-            Unlock Premium Analytics
+            {t('impact.unlockAnalytics')}
           </button>
         </div>
       </div>
@@ -216,19 +219,19 @@ export default function TrendingCard() {
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-lg flex items-center">
             <Hash className="h-5 w-5 mr-2" />
-            Suggested Hashtags
+            {t('hashtags.title')}
           </h3>
         </div>
 
         <div className="flex flex-wrap gap-2">
-          <span className="badge-expert text-xs">#Leadership</span>
-          <span className="badge-expert text-xs">#Innovation</span>
-          <span className="badge-expert text-xs">#GrowthMindset</span>
-          <span className="badge-expert text-xs">#Synergy</span>
-          <span className="badge-expert text-xs">#Disruption</span>
-          <span className="badge-expert text-xs">#Agile</span>
-          <span className="badge-expert text-xs">#Transformation</span>
-          <span className="badge-expert text-xs">#Digital</span>
+          <span className="badge-expert text-xs">{t('hashtags.leadership')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.innovation')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.growthMindset')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.synergy')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.disruption')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.agile')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.transformation')}</span>
+          <span className="badge-expert text-xs">{t('hashtags.digital')}</span>
         </div>
       </div>
     </div>

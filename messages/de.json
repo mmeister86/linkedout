@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "title": "LinkedOut - Satirischer LinkedIn Post Generator",
+    "description": "Generiere satirische LinkedIn Posts mit KI. Beschreibe einfach dein Thema oder Ereignis, und wir erstellen einen peinlichen Post für dich."
+  },
+  "page": {
+    "form": {
+      "title": "Erstelle deinen Professional Post",
+      "description": "Generiere satirische LinkedIn Posts mit KI. Beschreibe einfach dein Thema oder Ereignis, und wir erstellen einen peinlichen Post für dich.",
+      "topicLabel": "Thema oder Event",
+      "topicPlaceholder": "Beschreibe dein Thema oder Event (z.B., 'Ich habe einen neuen Job als Software Engineer bekommen')",
+      "languageLabel": "Sprache",
+      "generateButton": "LinkedIn Post Generieren",
+      "generatingButton": "Generiere..."
+    },
+    "buttons": {
+      "copyToClipboard": "In die Zwischenablage kopieren",
+      "copied": "Kopiert!",
+      "downloadMarkdown": "Als Markdown herunterladen"
+    }
+  },
+  "errors": {
+    "generation": "Ein Fehler ist beim Generieren des Posts aufgetreten.",
+    "clipboard": "Fehler beim Kopieren in die Zwischenablage. Bitte versuche es erneut.",
+    "download": "Fehler beim Herunterladen der Datei. Bitte versuche es erneut.",
+    "failedToGenerate": "Post-Generierung fehlgeschlagen"
+  },
+  "header": {
+    "logo": "LinkedOut",
+    "search": {
+      "placeholder": "Suche nach Opportunities"
+    },
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications"
+    },
+    "userMenu": {
+      "userName": "Professional User",
+      "userTitle": "Thought Leader bei Synergy Corp",
+      "viewProfile": "Profil ansehen",
+      "settings": "Einstellungen",
+      "helpCenter": "Hilfe-Center",
+      "signOut": "Abmelden"
+    },
+    "aria": {
+      "toggleMobileMenu": "Mobiles Menü umschalten",
+      "toggleTheme": "Theme umschalten"
+    },
+    "languageSwitcher": {
+      "label": "Sprache",
+      "english": "Englisch",
+      "german": "Deutsch",
+      "aria": "Sprache wechseln"
+    },
+    "premium": "Premium"
+  },
+  "profile": {
+    "name": "Professional User",
+    "title": "Thought Leader bei Synergy Corp",
+    "location": "Silicon Valley, CA",
+    "premiumMember": "Premium Member",
+    "viewProfile": "Profil ansehen",
+    "stats": {
+      "connections": "Connections",
+      "endorsements": "Endorsements"
+    },
+    "achievements": {
+      "title": "Letzte Achievements",
+      "corporateJargon": "Corporate Jargon Mastery",
+      "meaninglessPosts": "500+ Bedeutungslose Posts",
+      "worked24h": "24h Durchgearbeitet"
+    },
+    "skills": {
+      "title": "Top Skills",
+      "synergy": "Synergy",
+      "leverage": "Leverage",
+      "paradigmShift": "Paradigm Shift",
+      "disruption": "Disruption",
+      "blockchain": "Blockchain",
+      "aiBuzzwords": "AI Buzzwords"
+    },
+    "impact": {
+      "title": "Professional Impact",
+      "profileViews": "Profile Views",
+      "searchAppearances": "Search Appearances",
+      "postImpressions": "Post Impressions"
+    },
+    "premium": {
+      "unlockFeatures": "Premium Features freischalten",
+      "description": "Sieh dir an, wer dein Profil angesehen hat, greife auf erweiterte Analysen zu und erscheine 3x öfter in Suchen!",
+      "tryFree": "Premium kostenlos testen"
+    }
+  },
+  "trending": {
+    "title": "Trending Now",
+    "topics": {
+      "technology": "Technology",
+      "aiRevolution": "AI Revolution im Workplace",
+      "leadership": "Leadership",
+      "synergyManagement": "Synergy Management",
+      "productivity": "Productivity",
+      "hustleCulture": "Hustle Culture 2.0",
+      "innovation": "Innovation",
+      "blockchainEverything": "Blockchain Everything",
+      "career": "Career",
+      "quietQuitting": "Quiet Quitting Lösungen"
+    },
+    "connections": {
+      "title": "Leute, die du kennst",
+      "seeAll": "Alle anzeigen",
+      "connect": "Connecten",
+      "mutualConnections": "gemeinsame Connections"
+    },
+    "work": {
+      "title": "Heute bei der Arbeit",
+      "viewAll": "Alle anzeigen",
+      "meetings": "Du hast {count} Meetings heute",
+      "profileViews": "{count} Leute haben dein Profil angesehen",
+      "jobOpportunities": "{count} neue Job Opportunities"
+    },
+    "impact": {
+      "title": "Dein Professional Impact",
+      "profileStrength": "Profile Strength",
+      "allStar": "All-Star",
+      "networkGrowth": "Network Growth",
+      "engagementRate": "Engagement Rate",
+      "exceptional": "Exceptional",
+      "topPercent": "Du bist in den Top 1% der Professionals diese Woche! Dein Content generiert 3x mehr Engagement als Durchschnitt.",
+      "unlockAnalytics": "Premium Analytics freischalten"
+    },
+    "hashtags": {
+      "title": "Vorgeschlagene Hashtags",
+      "leadership": "#Leadership",
+      "innovation": "#Innovation",
+      "growthMindset": "#GrowthMindset",
+      "synergy": "#Synergy",
+      "disruption": "#Disruption",
+      "agile": "#Agile",
+      "transformation": "#Transformation",
+      "digital": "#Digital"
+    },
+    "posts": "Posts",
+    "trending": "TRENDING",
+    "hot": "HOT"
+  },
+  "postCard": {
+    "defaults": {
+      "authorName": "Professional User",
+      "authorTitle": "Thought Leader",
+      "authorCompany": "Synergy Corp",
+      "content": "Ich hatte gerade eine Epiphanie während meiner morgendlichen Mindfulness Session: Disruption ist nicht nur Innovation, es ist ein Paradigm-Shift des Fabrics organisationaler Synergy. Denkt daran, in der Welt der agilen Methoden bauen wir nicht nur Produkte, wir craften die Zukunft des menschlichen Potentials. #Innovation #Leadership #GrowthMindset"
+    },
+    "badge": {
+      "pro": "PRO"
+    },
+    "actions": {
+      "like": "Like",
+      "comment": "Comment",
+      "share": "Share",
+      "send": "Send",
+      "reply": "Reply"
+    },
+    "engagement": {
+      "comments": "Comments",
+      "shares": "Shares",
+      "views": "Views"
+    },
+    "reactions": {
+      "like": "Like",
+      "love": "Love",
+      "laugh": "Laugh",
+      "insightful": "Insightful",
+      "support": "Support"
+    },
+    "comment": {
+      "defaultAuthor": "Jane Doe",
+      "defaultText": "Das resoniert wirklich mit meiner Reise der Disruption traditioneller Paradigmen durch agile Synergy!"
+    }
+  },
+  "post": {
+    "timestamp": {
+      "justNow": "Gerade eben",
+      "hoursAgo": "vor {count}h",
+      "minutesAgo": "vor {count}m"
+    }
+  }
+}

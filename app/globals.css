@@ -46,11 +46,11 @@
 :root {
   --radius: 0.625rem;
   /* LinkedIn-inspired color scheme */
-  --background: oklch(98.254% 0.0056 84.442); /* #F3F2EF */
+  --background: oklch(98.254% 0.0056 84.442 / 0.874); /* #F3F2EF */
   --foreground: oklch(0.2 0 0); /* #2D2D2D */
-  --card: oklch(1 0 0); /* #FFFFFF */
+  --card: oklch(0.99 0.005 85); /* Slightly off-white for better contrast */
   --card-foreground: oklch(0.2 0 0); /* #2D2D2D */
-  --popover: oklch(1 0 0); /* #FFFFFF */
+  --popover: oklch(0.99 0.005 85); /* Match card color */
   --popover-foreground: oklch(0.2 0 0); /* #2D2D2D */
   --primary: oklch(0.55 0.15 240); /* #0A66C2 */
   --primary-foreground: oklch(1 0 0); /* #FFFFFF */
@@ -90,9 +90,9 @@
   /* LinkedIn-inspired dark mode colors */
   --background: oklch(0.15 0.01 80); /* Dark version of #F3F2EF */
   --foreground: oklch(0.95 0 0); /* #2D2D2D light version */
-  --card: oklch(0.2 0.01 80); /* Dark version of #FFFFFF */
+  --card: oklch(0.22 0.01 80); /* Lighter than background for better contrast */
   --card-foreground: oklch(0.95 0 0); /* #2D2D2D light version */
-  --popover: oklch(0.2 0.01 80); /* Dark version of #FFFFFF */
+  --popover: oklch(0.22 0.01 80); /* Match card color */
   --popover-foreground: oklch(0.95 0 0); /* #2D2D2D light version */
   --primary: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
   --primary-foreground: oklch(1 0 0); /* #FFFFFF */

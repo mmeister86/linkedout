@@ -1,8 +1,10 @@
 "use client";
 
 import { User, MapPin, Award, TrendingUp, BookOpen, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ProfileCard() {
+  const t = useTranslations('profile');
   return (
     <div className="linkedin-card mb-4">
       <div className="flex flex-col items-center">
@@ -15,17 +17,17 @@ export default function ProfileCard() {
         </div>
 
         {/* Name and Title */}
-        <h2 className="font-semibold text-lg text-center">Professional User</h2>
-        <p className="text-muted-foreground text-sm text-center mb-1">Thought Leader at Synergy Corp</p>
+        <h2 className="font-semibold text-lg text-center">{t('name')}</h2>
+        <p className="text-muted-foreground text-sm text-center mb-1">{t('title')}</p>
         <div className="flex items-center text-muted-foreground text-xs mb-3">
           <MapPin className="h-3 w-3 mr-1" />
-          <span>Silicon Valley, CA</span>
+          <span>{t('location')}</span>
         </div>
 
         {/* Premium Badge */}
         <div className="badge-premium flex items-center gap-1 mb-4">
           <Star className="h-3 w-3" />
-          Premium Member
+          {t('premiumMember')}
         </div>
       </div>
 
@@ -33,37 +35,37 @@ export default function ProfileCard() {
       <div className="flex justify-around py-3 border-t border-border mb-3">
         <div className="text-center">
           <p className="font-semibold text-lg">1,234</p>
-          <p className="text-xs text-muted-foreground">Connections</p>
+          <p className="text-xs text-muted-foreground">{t('stats.connections')}</p>
         </div>
         <div className="text-center">
           <p className="font-semibold text-lg">89</p>
-          <p className="text-xs text-muted-foreground">Endorsements</p>
+          <p className="text-xs text-muted-foreground">{t('stats.endorsements')}</p>
         </div>
       </div>
 
       {/* View Profile Button */}
       <button className="btn-linkedin-primary w-full mb-3">
-        View Profile
+        {t('viewProfile')}
       </button>
 
       {/* Satirical Achievement Badges */}
       <div className="border-t border-border pt-3">
         <h3 className="font-semibold text-sm mb-2 flex items-center">
           <Award className="h-4 w-4 mr-1" />
-          Recent Achievements
+          {t('achievements.title')}
         </h3>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <div className="badge-expert text-xs">Expert</div>
-            <span className="text-xs text-muted-foreground">Corporate Jargon Mastery</span>
+            <span className="text-xs text-muted-foreground">{t('achievements.corporateJargon')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="badge-influencer text-xs">Influencer</div>
-            <span className="text-xs text-muted-foreground">500+ Meaningless Posts</span>
+            <span className="text-xs text-muted-foreground">{t('achievements.meaninglessPosts')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="badge-hustler text-xs">Hustler</div>
-            <span className="text-xs text-muted-foreground">Worked 24h Straight</span>
+            <span className="text-xs text-muted-foreground">{t('achievements.worked24h')}</span>
           </div>
         </div>
       </div>
@@ -72,15 +74,15 @@ export default function ProfileCard() {
       <div className="border-t border-border pt-3 mt-3">
         <h3 className="font-semibold text-sm mb-2 flex items-center">
           <BookOpen className="h-4 w-4 mr-1" />
-          Top Skills
+          {t('skills.title')}
         </h3>
         <div className="flex flex-wrap gap-1">
-          <span className="badge-expert text-xs">Synergy</span>
-          <span className="badge-expert text-xs">Leverage</span>
-          <span className="badge-expert text-xs">Paradigm Shift</span>
-          <span className="badge-expert text-xs">Disruption</span>
-          <span className="badge-expert text-xs">Blockchain</span>
-          <span className="badge-expert text-xs">AI Buzzwords</span>
+          <span className="badge-expert text-xs">{t('skills.synergy')}</span>
+          <span className="badge-expert text-xs">{t('skills.leverage')}</span>
+          <span className="badge-expert text-xs">{t('skills.paradigmShift')}</span>
+          <span className="badge-expert text-xs">{t('skills.disruption')}</span>
+          <span className="badge-expert text-xs">{t('skills.blockchain')}</span>
+          <span className="badge-expert text-xs">{t('skills.aiBuzzwords')}</span>
         </div>
       </div>
 
@@ -88,19 +90,19 @@ export default function ProfileCard() {
       <div className="border-t border-border pt-3 mt-3">
         <h3 className="font-semibold text-sm mb-2 flex items-center">
           <TrendingUp className="h-4 w-4 mr-1" />
-          Professional Impact
+          {t('impact.title')}
         </h3>
         <div className="space-y-1">
           <div className="flex justify-between text-xs">
-            <span className="text-muted-foreground">Profile Views</span>
+            <span className="text-muted-foreground">{t('impact.profileViews')}</span>
             <span className="font-semibold">10,234</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-muted-foreground">Search Appearances</span>
+            <span className="text-muted-foreground">{t('impact.searchAppearances')}</span>
             <span className="font-semibold">5,678</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-muted-foreground">Post Impressions</span>
+            <span className="text-muted-foreground">{t('impact.postImpressions')}</span>
             <span className="font-semibold">1.2M</span>
           </div>
         </div>
@@ -110,13 +112,13 @@ export default function ProfileCard() {
       <div className="mt-4 p-3 bg-linear-to-r from-accent-gold/10 to-accent-gold/5 rounded-lg border border-accent-gold/20">
         <div className="flex items-center gap-2 mb-2">
           <Star className="h-4 w-4 text-accent-gold" />
-          <span className="font-semibold text-sm">Unlock Premium Features</span>
+          <span className="font-semibold text-sm">{t('premium.unlockFeatures')}</span>
         </div>
         <p className="text-xs text-muted-foreground mb-2">
-          See who viewed your profile, access advanced analytics, and appear in 3x more searches!
+          {t('premium.description')}
         </p>
         <button className="btn-linkedin-premium w-full text-xs py-2">
-          Try Premium Free
+          {t('premium.tryFree')}
         </button>
       </div>
     </div>

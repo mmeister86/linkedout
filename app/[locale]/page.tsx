@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useCompletion } from '@ai-sdk/react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
@@ -12,6 +13,10 @@ import PostCard from '@/components/PostCard';
 import TrendingCard from '@/components/TrendingCard';
 
 export default function Home() {
+  const t = useTranslations('page');
+  const tError = useTranslations('errors');
+  const tPost = useTranslations('post');
+
   const [topic, setTopic] = useState('');
   const [language, setLanguage] = useState<'english' | 'german'>('german');
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +31,7 @@ export default function Home() {
   } = useCompletion({
     api: '/api/generate',
     onError: (error: Error) => {
-      setError(error.message || 'An error occurred while generating post.');
+      setError(error.message || tError('generation'));
     },
     onFinish: (prompt, result) => {
       setError(null);
@@ -55,7 +60,7 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to generate post');
+        throw new Error(tError('failedToGenerate'));
       }
 
       // Get the response as a stream and handle it
@@ -76,7 +81,7 @@ export default function Home() {
         setCompletion(result);
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An error occurred while generating post.');
+      setError(error instanceof Error ? error.message : tError('generation'));
     }
   };
 
@@ -90,7 +95,7 @@ export default function Home() {
       setTimeout(() => setCopySuccess(false), 2000);
     } catch (err) {
       console.error('Failed to copy text: ', err);
-      setError('Failed to copy to clipboard. Please try again.');
+      setError(tError('clipboard'));
       // Clear error after 3 seconds
       setTimeout(() => setError(null), 3000);
     }
@@ -117,7 +122,7 @@ export default function Home() {
       URL.revokeObjectURL(element.href);
     } catch (err) {
       console.error('Failed to download file: ', err);
-      setError('Failed to download file. Please try again.');
+      setError(tError('download'));
       // Clear error after 3 seconds
       setTimeout(() => setError(null), 3000);
     }
@@ -141,9 +146,9 @@ export default function Home() {
             {/* Post Generator Card */}
             <div className="linkedin-card linkedin-card-important">
               <div className="mb-4">
-                <h2 className="text-xl font-semibold mb-2">Create Your Professional Post</h2>
+                <h2 className="text-xl font-semibold mb-2">{t('form.title')}</h2>
                 <p className="text-muted-foreground text-sm">
-                  {"Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we'll create a cringe-worthy post for you."}
+                  {t('form.description')}
                 </p>
               </div>
 
@@ -151,11 +156,11 @@ export default function Home() {
               <form onSubmit={handleGenerate} className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="topic" className="text-sm font-medium">
-                    Topic or Event
+                    {t('form.topicLabel')}
                   </label>
                   <Textarea
                     id="topic"
-                    placeholder="Describe your topic or event (e.g., 'I just got a new job as a software engineer')"
+                    placeholder={t('form.topicPlaceholder')}
                     value={topic}
                     onChange={(e) => setTopic(e.target.value)}
                     required
@@ -163,7 +168,7 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Language</label>
+                  <label className="text-sm font-medium">{t('form.languageLabel')}</label>
                   <div className="flex gap-4">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -197,10 +202,10 @@ export default function Home() {
                   {isGenerating ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Generating...
+                      {t('form.generatingButton')}
                     </>
                   ) : (
-                    'Generate LinkedIn Post'
+                    <span>{t('form.generateButton')}</span>
                   )}
                 </Button>
               </form>
@@ -217,7 +222,7 @@ export default function Home() {
             {completion && (
               <PostCard
                 content={completion}
-                timestamp="Just now"
+                timestamp={tPost('timestamp.justNow')}
                 likes={Math.floor(Math.random() * 500) + 50}
                 comments={Math.floor(Math.random() * 100) + 10}
                 shares={Math.floor(Math.random() * 50) + 5}
@@ -235,7 +240,7 @@ export default function Home() {
                     disabled={!completion}
                     className="flex-1"
                   >
-                    {copySuccess ? 'Copied!' : 'Copy to Clipboard'}
+                    {copySuccess ? t('buttons.copied') : t('buttons.copyToClipboard')}
                   </Button>
                   <Button
                     variant="linkedin"
@@ -243,7 +248,7 @@ export default function Home() {
                     disabled={!completion}
                     className="flex-1"
                   >
-                    Download as Markdown
+                    {t('buttons.downloadMarkdown')}
                   </Button>
                 </div>
               </div>

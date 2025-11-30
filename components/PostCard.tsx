@@ -2,6 +2,7 @@
 
 import { ThumbsUp, MessageCircle, Share, Send, MoreHorizontal, Heart, Laugh, Lightbulb, Award } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface PostCardProps {
   authorName?: string;
@@ -26,6 +27,14 @@ export default function PostCard({
   shares = 23,
   views = "12.5K"
 }: PostCardProps) {
+  const t = useTranslations('postCard');
+
+  // Use default values from translations if props are not provided
+  const finalAuthorName = authorName || t('defaults.authorName');
+  const finalAuthorTitle = authorTitle || t('defaults.authorTitle');
+  const finalAuthorCompany = authorCompany || t('defaults.authorCompany');
+  const finalContent = content || t('defaults.content');
+
   const [showReactions, setShowReactions] = useState(false);
   const [userReaction, setUserReaction] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -96,16 +105,16 @@ export default function PostCard({
         <div className="flex items-start space-x-3">
           <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center shrink-0">
             <span className="text-primary-foreground font-semibold">
-              {authorName.split(' ').map(n => n[0]).join('')}
+              {finalAuthorName.split(' ').map(n => n[0]).join('')}
             </span>
           </div>
           <div>
             <div className="flex items-center gap-1">
-              <h3 className="font-semibold text-sm">{authorName}</h3>
-              <span className="badge-premium text-xs ml-1">PRO</span>
+              <h3 className="font-semibold text-sm">{finalAuthorName}</h3>
+              <span className="badge-premium text-xs ml-1">{t('badge.pro')}</span>
             </div>
-            <p className="text-xs text-muted-foreground">{authorTitle} at {authorCompany}</p>
-            <p className="text-xs text-muted-foreground">{timestamp} • {views} views</p>
+            <p className="text-xs text-muted-foreground">{finalAuthorTitle} at {finalAuthorCompany}</p>
+            <p className="text-xs text-muted-foreground">{timestamp || '2h ago'} • {views} views</p>
           </div>
         </div>
         <button className="text-muted-foreground hover:bg-secondary rounded-full p-1">
@@ -115,7 +124,7 @@ export default function PostCard({
 
       {/* Post Content */}
       <div className="mb-3">
-        <p className="text-sm whitespace-pre-wrap">{content}</p>
+        <p className="text-sm whitespace-pre-wrap">{finalContent}</p>
       </div>
 
       {/* Engagement Metrics Bar */}
@@ -133,11 +142,11 @@ export default function PostCard({
               )}
               {likeCount > 0 && comments > 0 && " • "}
               {comments > 0 && (
-                <span>{comments} comments</span>
+                <span>{comments} {t('engagement.comments')}</span>
               )}
               {(likeCount > 0 || comments > 0) && shares > 0 && " • "}
               {shares > 0 && (
-                <span>{shares} shares</span>
+                <span>{shares} {t('engagement.shares')}</span>
               )}
             </span>
           </div>
@@ -153,35 +162,35 @@ export default function PostCard({
               <button
                 onClick={() => handleReaction("like")}
                 className="p-2 hover:bg-secondary rounded-full transition-colors"
-                title="Like"
+                title={t('reactions.like')}
               >
                 <ThumbsUp className="h-5 w-5 text-blue-600" />
               </button>
               <button
                 onClick={() => handleReaction("love")}
                 className="p-2 hover:bg-secondary rounded-full transition-colors"
-                title="Love"
+                title={t('reactions.love')}
               >
                 <Heart className="h-5 w-5 text-red-500" />
               </button>
               <button
                 onClick={() => handleReaction("laugh")}
                 className="p-2 hover:bg-secondary rounded-full transition-colors"
-                title="Laugh"
+                title={t('reactions.laugh')}
               >
                 <Laugh className="h-5 w-5 text-yellow-500" />
               </button>
               <button
                 onClick={() => handleReaction("insightful")}
                 className="p-2 hover:bg-secondary rounded-full transition-colors"
-                title="Insightful"
+                title={t('reactions.insightful')}
               >
                 <Lightbulb className="h-5 w-5 text-blue-500" />
               </button>
               <button
                 onClick={() => handleReaction("support")}
                 className="p-2 hover:bg-secondary rounded-full transition-colors"
-                title="Support"
+                title={t('reactions.support')}
               >
                 <Award className="h-5 w-5 text-purple-500" />
               </button>
@@ -203,23 +212,23 @@ export default function PostCard({
             ) : (
               <ThumbsUp className="h-4 w-4" />
             )}
-            <span className="text-sm">Like</span>
+            <span className="text-sm">{t('actions.like')}</span>
           </button>
         </div>
 
         <button className="flex items-center space-x-2 px-3 py-1 hover:bg-secondary rounded-full transition-colors">
           <MessageCircle className="h-4 w-4" />
-          <span className="text-sm">Comment</span>
+          <span className="text-sm">{t('actions.comment')}</span>
         </button>
 
         <button className="flex items-center space-x-2 px-3 py-1 hover:bg-secondary rounded-full transition-colors">
           <Share className="h-4 w-4" />
-          <span className="text-sm">Share</span>
+          <span className="text-sm">{t('actions.share')}</span>
         </button>
 
         <button className="flex items-center space-x-2 px-3 py-1 hover:bg-secondary rounded-full transition-colors">
           <Send className="h-4 w-4" />
-          <span className="text-sm">Send</span>
+          <span className="text-sm">{t('actions.send')}</span>
         </button>
       </div>
 
@@ -233,14 +242,14 @@ export default function PostCard({
             <div className="flex-1">
               <div className="bg-secondary rounded-lg p-2">
                 <div className="flex items-center gap-1 mb-1">
-                  <span className="font-semibold text-xs">Jane Doe</span>
+                  <span className="font-semibold text-xs">{t('comment.defaultAuthor')}</span>
                   <span className="text-xs text-muted-foreground">• 1h ago</span>
                 </div>
-                <p className="text-xs">This really resonates with my journey of disrupting traditional paradigms through agile synergy!</p>
+                <p className="text-xs">{t('comment.defaultText')}</p>
               </div>
               <div className="flex items-center space-x-3 mt-1">
-                <button className="text-xs text-muted-foreground hover:text-foreground">Like</button>
-                <button className="text-xs text-muted-foreground hover:text-foreground">Reply</button>
+                <button className="text-xs text-muted-foreground hover:text-foreground">{t('actions.like')}</button>
+                <button className="text-xs text-muted-foreground hover:text-foreground">{t('actions.reply')}</button>
               </div>
             </div>
           </div>

@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "title": "LinkedOut - Satirical LinkedIn Post Generator",
+    "description": "Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we'll create a cringe-worthy post for you."
+  },
+  "page": {
+    "form": {
+      "title": "Create Your Professional Post",
+      "description": "Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we'll create a cringe-worthy post for you.",
+      "topicLabel": "Topic or Event",
+      "topicPlaceholder": "Describe your topic or event (e.g., 'I just got a new job as a software engineer')",
+      "languageLabel": "Language",
+      "generateButton": "Generate LinkedIn Post",
+      "generatingButton": "Generating..."
+    },
+    "buttons": {
+      "copyToClipboard": "Copy to Clipboard",
+      "copied": "Copied!",
+      "downloadMarkdown": "Download as Markdown"
+    }
+  },
+  "errors": {
+    "generation": "An error occurred while generating post.",
+    "clipboard": "Failed to copy to clipboard. Please try again.",
+    "download": "Failed to download file. Please try again.",
+    "failedToGenerate": "Failed to generate post"
+  },
+  "header": {
+    "logo": "LinkedOut",
+    "search": {
+      "placeholder": "Search for opportunities"
+    },
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications"
+    },
+    "userMenu": {
+      "userName": "Professional User",
+      "userTitle": "Thought Leader at Synergy Corp",
+      "viewProfile": "View Profile",
+      "settings": "Settings",
+      "helpCenter": "Help Center",
+      "signOut": "Sign Out"
+    },
+    "aria": {
+      "toggleMobileMenu": "Toggle mobile menu",
+      "toggleTheme": "Toggle theme"
+    },
+    "languageSwitcher": {
+      "label": "Language",
+      "english": "English",
+      "german": "German",
+      "aria": "Switch language"
+    },
+    "premium": "Premium"
+  },
+  "profile": {
+    "name": "Professional User",
+    "title": "Thought Leader at Synergy Corp",
+    "location": "Silicon Valley, CA",
+    "premiumMember": "Premium Member",
+    "viewProfile": "View Profile",
+    "stats": {
+      "connections": "Connections",
+      "endorsements": "Endorsements"
+    },
+    "achievements": {
+      "title": "Recent Achievements",
+      "corporateJargon": "Corporate Jargon Mastery",
+      "meaninglessPosts": "500+ Meaningless Posts",
+      "worked24h": "Worked 24h Straight"
+    },
+    "skills": {
+      "title": "Top Skills",
+      "synergy": "Synergy",
+      "leverage": "Leverage",
+      "paradigmShift": "Paradigm Shift",
+      "disruption": "Disruption",
+      "blockchain": "Blockchain",
+      "aiBuzzwords": "AI Buzzwords"
+    },
+    "impact": {
+      "title": "Professional Impact",
+      "profileViews": "Profile Views",
+      "searchAppearances": "Search Appearances",
+      "postImpressions": "Post Impressions"
+    },
+    "premium": {
+      "unlockFeatures": "Unlock Premium Features",
+      "description": "See who viewed your profile, access advanced analytics, and appear in 3x more searches!",
+      "tryFree": "Try Premium Free"
+    }
+  },
+  "trending": {
+    "title": "Trending Now",
+    "topics": {
+      "technology": "Technology",
+      "aiRevolution": "AI Revolution in Workplace",
+      "leadership": "Leadership",
+      "synergyManagement": "Synergy Management",
+      "productivity": "Productivity",
+      "hustleCulture": "Hustle Culture 2.0",
+      "innovation": "Innovation",
+      "blockchainEverything": "Blockchain Everything",
+      "career": "Career",
+      "quietQuitting": "Quiet Quitting Solutions"
+    },
+    "connections": {
+      "title": "People You May Know",
+      "seeAll": "See all",
+      "connect": "Connect",
+      "mutualConnections": "mutual connections"
+    },
+    "work": {
+      "title": "Today at Work",
+      "viewAll": "View all",
+      "meetings": "You have {count} meetings today",
+      "profileViews": "{count} people viewed your profile",
+      "jobOpportunities": "{count} new job opportunities"
+    },
+    "impact": {
+      "title": "Your Professional Impact",
+      "profileStrength": "Profile Strength",
+      "allStar": "All-Star",
+      "networkGrowth": "Network Growth",
+      "engagementRate": "Engagement Rate",
+      "exceptional": "Exceptional",
+      "topPercent": "You're in the top 1% of professionals this week! Your content is generating 3x more engagement than average.",
+      "unlockAnalytics": "Unlock Premium Analytics"
+    },
+    "hashtags": {
+      "title": "Suggested Hashtags",
+      "leadership": "#Leadership",
+      "innovation": "#Innovation",
+      "growthMindset": "#GrowthMindset",
+      "synergy": "#Synergy",
+      "disruption": "#Disruption",
+      "agile": "#Agile",
+      "transformation": "#Transformation",
+      "digital": "#Digital"
+    },
+    "posts": "posts",
+    "trending": "TRENDING",
+    "hot": "HOT"
+  },
+  "postCard": {
+    "defaults": {
+      "authorName": "Professional User",
+      "authorTitle": "Thought Leader",
+      "authorCompany": "Synergy Corp",
+      "content": "Just had an epiphany during my morning mindfulness session: disruption isn't just about innovation, it's about paradigm-shifting the very fabric of organizational synergy. Remember, in the world of agile methodologies, we're not just building products, we're crafting the future of human potential. #Innovation #Leadership #GrowthMindset"
+    },
+    "badge": {
+      "pro": "PRO"
+    },
+    "actions": {
+      "like": "Like",
+      "comment": "Comment",
+      "share": "Share",
+      "send": "Send",
+      "reply": "Reply"
+    },
+    "engagement": {
+      "comments": "comments",
+      "shares": "shares",
+      "views": "views"
+    },
+    "reactions": {
+      "like": "Like",
+      "love": "Love",
+      "laugh": "Laugh",
+      "insightful": "Insightful",
+      "support": "Support"
+    },
+    "comment": {
+      "defaultAuthor": "Jane Doe",
+      "defaultText": "This really resonates with my journey of disrupting traditional paradigms through agile synergy!"
+    }
+  },
+  "post": {
+    "timestamp": {
+      "justNow": "Just now",
+      "hoursAgo": "{count}h ago",
+      "minutesAgo": "{count}m ago"
+    }
+  }
+}
