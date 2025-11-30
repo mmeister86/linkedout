@@ -9,7 +9,7 @@ import { Loader2 } from 'lucide-react';
 
 export default function Home() {
   const [topic, setTopic] = useState('');
-  const [language, setLanguage] = useState<'english' | 'german'>('english');
+  const [language, setLanguage] = useState<'english' | 'german'>('german');
   const [error, setError] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
 
