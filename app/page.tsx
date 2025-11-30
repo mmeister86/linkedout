@@ -6,6 +6,10 @@ import { useCompletion } from '@ai-sdk/react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
+import Header from '@/components/Header';
+import ProfileCard from '@/components/ProfileCard';
+import PostCard from '@/components/PostCard';
+import TrendingCard from '@/components/TrendingCard';
 
 export default function Home() {
   const [topic, setTopic] = useState('');
@@ -22,7 +26,7 @@ export default function Home() {
   } = useCompletion({
     api: '/api/generate',
     onError: (error: Error) => {
-      setError(error.message || 'An error occurred while generating the post.');
+      setError(error.message || 'An error occurred while generating post.');
     },
     onFinish: (prompt, result) => {
       setError(null);
@@ -40,7 +44,7 @@ export default function Home() {
     // Convert language to match API expectations
     const apiLanguage = language === 'english' ? 'en' : 'de';
 
-    // Directly call the API with our custom implementation
+    // Directly call API with our custom implementation
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -72,7 +76,7 @@ export default function Home() {
         setCompletion(result);
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An error occurred while generating the post.');
+      setError(error instanceof Error ? error.message : 'An error occurred while generating post.');
     }
   };
 
@@ -120,111 +124,137 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-2xl space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">LinkedOut</h1>
-          <p className="text-muted-foreground">
-            Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we&apos;ll create a cringe-worthy post for you.
-          </p>
-        </div>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <Header />
 
-        {/* Input Form */}
-        <form onSubmit={handleGenerate} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="topic" className="text-sm font-medium">
-              Topic or Event
-            </label>
-            <Textarea
-              id="topic"
-              placeholder="Describe your topic or event (e.g., 'I just got a new job as a software engineer')"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-              className="min-h-24"
-              required
-            />
+      {/* Main Content Area */}
+      <div className="pt-4 pb-8">
+        <div className="linkedin-layout">
+          {/* Left Sidebar */}
+          <div className="linkedin-left-sidebar sticky top-16 h-fit">
+            <ProfileCard />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Language</label>
-            <div className="flex gap-4">
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  value="english"
-                  checked={language === 'english'}
-                  onChange={() => setLanguage('english')}
-                  className="text-primary"
-                />
-                <span>English</span>
-              </label>
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  value="german"
-                  checked={language === 'german'}
-                  onChange={() => setLanguage('german')}
-                  className="text-primary"
-                />
-                <span>German</span>
-              </label>
-            </div>
-          </div>
-
-          <Button
-            type="submit"
-            disabled={!topic.trim() || isGenerating}
-            className="w-full"
-          >
-            {isGenerating ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
-              </>
-            ) : (
-              'Generate LinkedIn Post'
-            )}
-          </Button>
-        </form>
-
-        {/* Error Display */}
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-3">
-            {error}
-          </div>
-        )}
-
-        {/* Generated Post */}
-        {completion && (
+          {/* Main Content */}
           <div className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Generated Post</label>
-              <div className="border rounded-md p-4 bg-card min-h-32 whitespace-pre-wrap">
-                {completion}
+            {/* Post Generator Card */}
+            <div className="linkedin-card linkedin-card-important">
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold mb-2">Create Your Professional Post</h2>
+                <p className="text-muted-foreground text-sm">
+                  {"Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we'll create a cringe-worthy post for you."}
+                </p>
               </div>
+
+              {/* Input Form */}
+              <form onSubmit={handleGenerate} className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="topic" className="text-sm font-medium">
+                    Topic or Event
+                  </label>
+                  <Textarea
+                    id="topic"
+                    placeholder="Describe your topic or event (e.g., 'I just got a new job as a software engineer')"
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Language</label>
+                  <div className="flex gap-4">
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        value="english"
+                        checked={language === 'english'}
+                        onChange={() => setLanguage('english')}
+                        className="text-primary"
+                      />
+                      <span>English</span>
+                    </label>
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        value="german"
+                        checked={language === 'german'}
+                        onChange={() => setLanguage('german')}
+                        className="text-primary"
+                      />
+                      <span>German</span>
+                    </label>
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={!topic.trim() || isGenerating}
+                  className="w-full"
+                  size="lg"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    'Generate LinkedIn Post'
+                  )}
+                </Button>
+              </form>
+
+              {/* Error Display */}
+              {error && (
+                <div className="mt-4 bg-red-50 border border-red-200 text-red-800 rounded-md p-3 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200">
+                  {error}
+                </div>
+              )}
             </div>
 
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={handleCopyToClipboard}
-                disabled={!completion}
-                className="flex-1"
-              >
-                {copySuccess ? 'Copied!' : 'Copy to Clipboard'}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleDownloadMarkdown}
-                disabled={!completion}
-                className="flex-1"
-              >
-                Download as Markdown
-              </Button>
-            </div>
+            {/* Generated Post Display */}
+            {completion && (
+              <PostCard
+                content={completion}
+                timestamp="Just now"
+                likes={Math.floor(Math.random() * 500) + 50}
+                comments={Math.floor(Math.random() * 100) + 10}
+                shares={Math.floor(Math.random() * 50) + 5}
+                views={`${Math.floor(Math.random() * 9000) + 1000}`}
+              />
+            )}
+
+            {/* Action Buttons */}
+            {completion && (
+              <div className="linkedin-card">
+                <div className="flex gap-3">
+                  <Button
+                    variant="linkedin"
+                    onClick={handleCopyToClipboard}
+                    disabled={!completion}
+                    className="flex-1"
+                  >
+                    {copySuccess ? 'Copied!' : 'Copy to Clipboard'}
+                  </Button>
+                  <Button
+                    variant="linkedin"
+                    onClick={handleDownloadMarkdown}
+                    disabled={!completion}
+                    className="flex-1"
+                  >
+                    Download as Markdown
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+
+          {/* Right Sidebar */}
+          <div className="linkedin-right-sidebar sticky top-16 h-fit">
+            <TrendingCard />
+          </div>
+        </div>
       </div>
     </div>
   );

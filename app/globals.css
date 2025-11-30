@@ -45,71 +45,89 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* LinkedIn-inspired color scheme */
+  --background: oklch(98.254% 0.0056 84.442); /* #F3F2EF */
+  --foreground: oklch(0.2 0 0); /* #2D2D2D */
+  --card: oklch(1 0 0); /* #FFFFFF */
+  --card-foreground: oklch(0.2 0 0); /* #2D2D2D */
+  --popover: oklch(1 0 0); /* #FFFFFF */
+  --popover-foreground: oklch(0.2 0 0); /* #2D2D2D */
+  --primary: oklch(0.55 0.15 240); /* #0A66C2 */
+  --primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --secondary: oklch(0.95 0.05 240); /* #E7F3FF */
+  --secondary-foreground: oklch(0.55 0.15 240); /* #0A66C2 */
+  --muted: oklch(0.95 0.05 240); /* #E7F3FF */
+  --muted-foreground: oklch(0.45 0 0); /* #5E5E5E */
+  --accent: oklch(0.95 0.05 240); /* #E7F3FF */
+  --accent-foreground: oklch(0.55 0.15 240); /* #0A66C2 */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0.01 80); /* #E0DFDC */
+  --input: oklch(0.9 0.01 80); /* #E0DFDC */
+  --ring: oklch(0.55 0.15 240); /* #0A66C2 */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.95 0.05 240); /* #E7F3FF */
+  --sidebar-foreground: oklch(0.2 0 0); /* #2D2D2D */
+  --sidebar-primary: oklch(0.55 0.15 240); /* #0A66C2 */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --sidebar-accent: oklch(0.95 0.05 240); /* #E7F3FF */
+  --sidebar-accent-foreground: oklch(0.55 0.15 240); /* #0A66C2 */
+  --sidebar-border: oklch(0.9 0.01 80); /* #E0DFDC */
+  --sidebar-ring: oklch(0.55 0.15 240); /* #0A66C2 */
+
+  /* Satirical color twists */
+  --influencer-pink: #ff6b9d;
+  --hustle-culture-orange: #ff8c42;
+  --corporate-gray: #8e9aaf;
+  --accent-gold: oklch(0.85 0.2 95); /* #FDB813 */
+  --success-green: oklch(0.55 0.15 160); /* #05A660 */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* LinkedIn-inspired dark mode colors */
+  --background: oklch(0.15 0.01 80); /* Dark version of #F3F2EF */
+  --foreground: oklch(0.95 0 0); /* #2D2D2D light version */
+  --card: oklch(0.2 0.01 80); /* Dark version of #FFFFFF */
+  --card-foreground: oklch(0.95 0 0); /* #2D2D2D light version */
+  --popover: oklch(0.2 0.01 80); /* Dark version of #FFFFFF */
+  --popover-foreground: oklch(0.95 0 0); /* #2D2D2D light version */
+  --primary: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
+  --primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --secondary: oklch(0.25 0.05 240); /* Dark version of #E7F3FF */
+  --secondary-foreground: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
+  --muted: oklch(0.25 0.05 240); /* Dark version of #E7F3FF */
+  --muted-foreground: oklch(0.7 0 0); /* Lighter version of #5E5E5E */
+  --accent: oklch(0.25 0.05 240); /* Dark version of #E7F3FF */
+  --accent-foreground: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(0.3 0.01 80); /* Dark version of #E0DFDC */
+  --input: oklch(0.3 0.01 80); /* Dark version of #E0DFDC */
+  --ring: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.25 0.05 240); /* Dark version of #E7F3FF */
+  --sidebar-foreground: oklch(0.95 0 0); /* Light version of #2D2D2D */
+  --sidebar-primary: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --sidebar-accent: oklch(0.25 0.05 240); /* Dark version of #E7F3FF */
+  --sidebar-accent-foreground: oklch(
+    0.65 0.18 240
+  ); /* Lighter version of #0A66C2 */
+  --sidebar-border: oklch(0.3 0.01 80); /* Dark version of #E0DFDC */
+  --sidebar-ring: oklch(0.65 0.18 240); /* Lighter version of #0A66C2 */
+
+  /* Satirical color twists for dark mode */
+  --influencer-pink: #ff6b9d;
+  --hustle-culture-orange: #ff8c42;
+  --corporate-gray: #8e9aaf;
+  --accent-gold: oklch(0.75 0.2 95); /* Darker version of #FDB813 */
+  --success-green: oklch(0.65 0.15 160); /* Lighter version of #05A660 */
 }
 
 @layer base {
@@ -118,5 +136,257 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  /* LinkedIn-inspired typography hierarchy */
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.25px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0px;
+  }
+
+  .body-large {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0px;
+  }
+
+  .body-normal {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0px;
+  }
+
+  .body-small {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.25px;
+  }
+
+  .caption {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0.25px;
+  }
+
+  /* LinkedIn-style card design */
+  .linkedin-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+    padding: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .linkedin-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .linkedin-card-important {
+    padding: 24px;
+  }
+
+  /* LinkedIn-style dividers */
+  .linkedin-divider {
+    height: 1px;
+    background-color: var(--border);
+    opacity: 0.1;
+    margin: 10px 0;
+  }
+
+  /* LinkedIn-style badge styles */
+  .badge-premium {
+    background-color: var(--accent-gold);
+    color: #000000;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-trending {
+    background-color: #d32f2f;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-expert {
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-influencer {
+    background-color: var(--influencer-pink);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-hustler {
+    background-color: var(--hustle-culture-orange);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* LinkedIn-style button styles */
+  .btn-linkedin-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-linkedin-primary:hover {
+    background-color: oklch(0.45 0.15 240); /* #004182 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-linkedin-primary:active {
+    background-color: oklch(0.35 0.15 240);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-linkedin-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 24px;
+    padding: 10px 22px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-linkedin-secondary:hover {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .btn-linkedin-premium {
+    background-color: var(--accent-gold);
+    color: #000000;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-linkedin-premium:hover {
+    background-color: oklch(0.75 0.2 95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* LinkedIn-style form inputs */
+  .linkedin-input {
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .linkedin-input:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+  }
+
+  .linkedin-textarea {
+    min-height: 120px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .linkedin-textarea:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+  }
+
+  /* LinkedIn-style layout grid */
+  .linkedin-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 320px;
+    gap: 20px;
+    max-width: 1128px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1279px) {
+    .linkedin-layout {
+      grid-template-columns: 1fr 320px;
+    }
+
+    .linkedin-left-sidebar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .linkedin-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .linkedin-right-sidebar {
+      display: none;
+    }
   }
 }
