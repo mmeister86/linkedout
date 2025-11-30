@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { useCompletion } from '@ai-sdk/react';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
@@ -18,7 +19,7 @@ export default function Home() {
   const tPost = useTranslations('post');
 
   const [topic, setTopic] = useState('');
-  const [language, setLanguage] = useState<'english' | 'german'>('german');
+  const locale = useLocale();
   const [error, setError] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
 
@@ -46,9 +47,6 @@ export default function Home() {
     setCompletion('');
     setError(null);
 
-    // Convert language to match API expectations
-    const apiLanguage = language === 'english' ? 'en' : 'de';
-
     // Directly call API with our custom implementation
     try {
       const response = await fetch('/api/generate', {
@@ -56,7 +54,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ topic, language: apiLanguage }),
+        body: JSON.stringify({ topic, language: locale }),
       });
 
       if (!response.ok) {
@@ -161,37 +159,13 @@ export default function Home() {
                   <Textarea
                     id="topic"
                     placeholder={t('form.topicPlaceholder')}
-                    value={topic}
+                                      value={topic}
+                                      className='mt-2'
                     onChange={(e) => setTopic(e.target.value)}
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">{t('form.languageLabel')}</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input
-                        type="radio"
-                        value="english"
-                        checked={language === 'english'}
-                        onChange={() => setLanguage('english')}
-                        className="text-primary"
-                      />
-                      <span>English</span>
-                    </label>
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input
-                        type="radio"
-                        value="german"
-                        checked={language === 'german'}
-                        onChange={() => setLanguage('german')}
-                        className="text-primary"
-                      />
-                      <span>German</span>
-                    </label>
-                  </div>
-                </div>
 
                 <Button
                   type="submit"

@@ -9,7 +9,6 @@
       "description": "Generate satirical LinkedIn posts with AI. Just describe your topic or event, and we'll create a cringe-worthy post for you.",
       "topicLabel": "Topic or Event",
       "topicPlaceholder": "Describe your topic or event (e.g., 'I just got a new job as a software engineer')",
-      "languageLabel": "Language",
       "generateButton": "Generate LinkedIn Post",
       "generatingButton": "Generating..."
     },

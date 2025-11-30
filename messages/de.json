@@ -9,7 +9,6 @@
       "description": "Generiere satirische LinkedIn Posts mit KI. Beschreibe einfach dein Thema oder Ereignis, und wir erstellen einen peinlichen Post für dich.",
       "topicLabel": "Thema oder Event",
       "topicPlaceholder": "Beschreibe dein Thema oder Event (z.B., 'Ich habe einen neuen Job als Software Engineer bekommen')",
-      "languageLabel": "Sprache",
       "generateButton": "LinkedIn Post Generieren",
       "generatingButton": "Generiere..."
     },
